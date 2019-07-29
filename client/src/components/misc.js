@@ -1,1 +1,3 @@
-export const USER_SERVER = '/api';
+const USER_SERVER = '/api';
+
+export default USER_SERVER;
