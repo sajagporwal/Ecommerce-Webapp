@@ -11,7 +11,6 @@ import AddProduct from './components/add_product'
 import Shop from './components/shop/index'
 import ProductDetail from './components/Product';
 import MyCart from './components/mycart';
-import USER_SERVER from './components/misc';
 
 export default class App extends Component {
   componentDidMount(){
@@ -27,14 +26,14 @@ export default class App extends Component {
           <Header />
           <div style={{height:`${window.innerHeight-44}px`}}>
           <Switch>
-            <Route path={`${USER_SERVER}`} exact component={Home} />
-            <Route path={`${USER_SERVER}/product_detail/:id`} component={ProductDetail} />
-            <Route path={`${USER_SERVER}/add_product`} component={AddProduct} />
-            <Route path={`${USER_SERVER}shop`} component={Shop} />
-            <Route path={`${USER_SERVER}/myaccount`} component={User} />
-            <Route path={`${USER_SERVER}/login_register`} component={RegisterLogin} />
-            <Route path={`${USER_SERVER}/mycart`} component={MyCart} />
-            <Route path={`${USER_SERVER}/register`} component={Register} />
+            <Route path="/" exact component={Home} />
+            <Route path="/product_detail/:id" component={ProductDetail} />
+            <Route path="/add_product" component={AddProduct} />
+            <Route path="/shop" component={Shop} />
+            <Route path="/myaccount" component={User} />
+            <Route path="/login_register" component={RegisterLogin} />
+            <Route path="/mycart" component={MyCart} />
+            <Route path="/register" component={Register} />
           </Switch>
           </div>
           <Footer />
