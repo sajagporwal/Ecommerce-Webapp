@@ -59,7 +59,7 @@
     "@fortawesome/fontawesome-free": "^5.9.0"
   },
   "proxy":{
-    "/api/":{
+    "/api":{
       "target":"http://localhost:3002"
     }
   }
