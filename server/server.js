@@ -2,7 +2,7 @@ const express=require('express');
 const bodyParser =require('body-parser');
 const cookieParser = require('cookie-parser');
 const formidable = require('express-formidable');
-const cloudinary = require('cloudinary');
+
 
 const app=express();
 const mongoose=require('mongoose');
@@ -14,12 +14,9 @@ mongoose.Promise=global.Promise;
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
-cloudinary.config({
-    cloud_name:process.env.CLOUD_NAME,
-    api_key:process.env.CLOUD_API_KEY,
-    api_key:process.env.CLOUD_API_SECRET
-})
-mongoose.connect(process.env.DATABASE);
+app.use(express.static('client/build'))
+
+mongoose.connect(process.env.MONGODB_URI);
 
 // Models
 const { User } = require('./models/user')
@@ -350,6 +347,14 @@ app.post('/api/users/login',(req,res)=>{
         })
     })
 })
+
+if(process.env.NODE_ENV === 'production')
+{
+    const path = require('path');
+    app.get('/*',(req,res)=>{
+        res.sendFile(path,resolve(__dirname,'../client','build','index.html'));
+    })
+}
 
 const port = process.env.PORT || 3002;
 app.listen(port,()=>{
